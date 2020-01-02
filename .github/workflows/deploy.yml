@@ -1,0 +1,41 @@
+name: Deploy
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Checkout submodules
+      shell: bash
+      run: git submodule update --init --recursive
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 2.2.108
+    - name: Setup Nuget.exe
+      uses: warrenbuckley/Setup-Nuget@v1
+    - name: Build with dotnet
+      run: dotnet msbuild KeraLua.sln -p:Configuration=Release
+    - name: Pack nuget package
+      run: nuget pack KeraLua.nuspec -OutputDirectory lib\Release\net45
+    - name: Add private GitHub registry to NuGet
+      run: nuget sources add -name "GPR" -Source https://nuget.pkg.github.com/Buerkert/index.json -Username Buerkert -Password ${{ secrets.GITHUB_TOKEN }}
+    - name: Push generated package to GitHub registry
+      run: nuget push .lib\Release\net45\*.nupkg -Source "GPR" -SkipDuplicate
+    - name: Upload KeraLua artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: KeraLua        
+        path: lib\Release\net45
+    - name: Upload runtimes artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: Runtimes        
+        path: runtimes

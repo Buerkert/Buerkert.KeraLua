@@ -1,4 +1,8 @@
 ﻿// ReSharper disable IdentifierTypo
+
+using System;
+using System.IO;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security;
 
@@ -24,21 +28,12 @@ namespace KeraLua
     internal static class NativeMethods
     {
 
-#if __TVOS__ && __UNIFIED__
-        private const string LuaLibraryName = "@rpath/liblua53.framework/liblua53";
-#elif __WATCHOS__ && __UNIFIED__
-        private const string LuaLibraryName = "@rpath/liblua53.framework/liblua53";
-#elif __IOS__ && __UNIFIED__
-        private const string LuaLibraryName = "@rpath/liblua53.framework/liblua53";
-#elif __ANDROID__
-        private const string LuaLibraryName = "liblua53.so";
-#elif __MACOS__ 
-        private const string LuaLibraryName = "liblua53.dylib";
-#elif WINDOWS_UWP
         private const string LuaLibraryName = "lua53.dll";
-#else
-        private const string LuaLibraryName = "lua53";
-#endif
+
+        static NativeMethods()
+        {
+            NativeLibsHandler.RegisterPathForDll(LuaLibraryName);
+        }
 
 #pragma warning disable IDE1006 // Naming Styles
 

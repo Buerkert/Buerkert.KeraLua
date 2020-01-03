@@ -20,7 +20,7 @@
     <file src="lib\Release\net45\KeraLua.xml" target="lib\net45" />
     <file src="runtimes\win-x64\native\lua53.dll" target="runtimes\win-x64\native\lua53.dll" />
     <file src="runtimes\win-x86\native\lua53.dll" target="runtimes\win-x86\native\lua53.dll" />
-    <file src="build\targets\KeraLua.targets" target="build\net45\KeraLua.targets" />
+    <file src="build\targets\KeraLua.targets" target="build\net45\Buerkert.KeraLua.targets" />
     <file src="LICENSE" target="LICENSE" />
   </files>
 </package>

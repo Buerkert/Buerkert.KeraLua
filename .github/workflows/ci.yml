@@ -21,6 +21,8 @@ jobs:
       uses: warrenbuckley/Setup-Nuget@v1
     - name: Build with dotnet
       run: dotnet msbuild KeraLua.sln -p:Configuration=Release
+    - name: Run unit tests
+      run: packages\NUnit.ConsoleRunner.3.10.0\tools\nunit3-console.exe tests\build\net45\bin\Release\KeraLuaTest.dll --output=lib\Release\net45
     - name: Pack nuget package
       run: nuget pack KeraLua.nuspec -OutputDirectory lib\Release\net45
     - name: Upload KeraLua artifact

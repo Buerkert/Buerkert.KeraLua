@@ -4,7 +4,7 @@ KeraLua
 =======
 
 [![GitHub Actions](https://github.com/Buerkert/KeraLua/workflows/CI/badge.svg)](https://github.com/Buerkert/KeraLua/actions)
-[![nuget](https://badgen.net/nuget/v/KeraLua?icon=nuget)](https://www.nuget.org/packages/KeraLua)
+<!--[![nuget](https://badgen.net/nuget/v/KeraLua?icon=nuget)](https://www.nuget.org/packages/KeraLua)-->
 
 C# Native bindings of Lua 5.3 for .NET
 

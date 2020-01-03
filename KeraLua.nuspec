@@ -5,9 +5,9 @@
     <version>1.0.0</version>
     <authors>Buerkert</authors>
     <owners>Buerkert</owners>
-    <licenseUrl>https://github.com/Buerkert/KeraLua/blob/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/Buerkert/KeraLua</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/Buerkert/KeraLua/master/KeraLua.png</iconUrl>
+    <licenseUrl>https://github.com/Buerkert/Buerkert.KeraLua/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Buerkert/Buerkert.KeraLua</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/Buerkert/Buerkert.KeraLua/master/KeraLua.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>
       C# Native bindings of Lua 5.3 (compatible with .NET) 

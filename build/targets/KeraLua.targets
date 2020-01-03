@@ -7,7 +7,7 @@
         <ShouldIncludeNativeLua Condition=" '$(ShouldIncludeNativeLua)' == '' ">True</ShouldIncludeNativeLua>
     </PropertyGroup>
 
-    <ItemGroup Condition=" '$(ShouldIncludeNativeLua)' != 'False' and ( '$(PlatformTarget)' != 'x64' and '$(PlatformTarget)' != 'x86' ) ">
+    <ItemGroup Condition=" '$(ShouldIncludeNativeLua)' != 'False' ">
         <!-- Windows -->
         <None Include="$(MSBuildThisFileDirectory)..\..\runtimes\win-x86\native\lua53.dll"
               Condition="Exists('$(MSBuildThisFileDirectory)..\..\runtimes\win-x86\native\lua53.dll')">

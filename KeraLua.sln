@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KeraLua", "KeraLua", "{4A43DAAC-F9FF-4EB1-BFBD-FB4655CCE1F7}"
 EndProject
@@ -13,9 +13,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{B3EAA632-D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeraLuaTest", "tests\build\net45\KeraLuaTest.csproj", "{20AE709C-FB97-48E3-89B0-A34A5C3DA1DB}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "KeraLuaTest.Shared", "tests\KeraLuaTest.Shared.shproj", "{C3BE1635-FBD5-4BA1-B2A4-D6F87FB39051}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "KeraLuaTest.Shared.Scripts", "tests\KeraLuaTest.Shared.Scripts.shproj", "{1D9A8613-D6FD-43B5-9712-D6C1648A431E}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		tests\KeraLuaTest.Shared.Scripts.projitems*{1d9a8613-d6fd-43b5-9712-d6c1648a431e}*SharedItemsImports = 13
+		tests\KeraLuaTest.Shared.projitems*{20ae709c-fb97-48e3-89b0-a34a5c3da1db}*SharedItemsImports = 4
+		tests\KeraLuaTest.Shared.Scripts.projitems*{20ae709c-fb97-48e3-89b0-a34a5c3da1db}*SharedItemsImports = 4
 		src\KeraLua.Core.projitems*{bd205ad6-760e-48f3-bab2-21447396bd17}*SharedItemsImports = 13
+		tests\KeraLuaTest.Shared.projitems*{c3be1635-fbd5-4ba1-b2a4-d6f87fb39051}*SharedItemsImports = 13
 		src\KeraLua.Core.projitems*{c45805a8-6436-4738-bd9f-4632eea63bbc}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +47,8 @@ Global
 		{C45805A8-6436-4738-BD9F-4632EEA63BBC} = {4A43DAAC-F9FF-4EB1-BFBD-FB4655CCE1F7}
 		{BD205AD6-760E-48F3-BAB2-21447396BD17} = {4A43DAAC-F9FF-4EB1-BFBD-FB4655CCE1F7}
 		{20AE709C-FB97-48E3-89B0-A34A5C3DA1DB} = {B3EAA632-D2D7-4272-9DB9-11F46C99DAE9}
+		{C3BE1635-FBD5-4BA1-B2A4-D6F87FB39051} = {B3EAA632-D2D7-4272-9DB9-11F46C99DAE9}
+		{1D9A8613-D6FD-43B5-9712-D6C1648A431E} = {B3EAA632-D2D7-4272-9DB9-11F46C99DAE9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4720E610-698B-48DD-BBD7-03AC99E9BC90}

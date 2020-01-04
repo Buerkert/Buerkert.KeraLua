@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{1D9A8613-D6FD-43B5-9712-D6C1648A431E}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>KeraLuaTest.Shared.Scripts</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)LuaTests\core\bisect.lua">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>scripts\core\bisect.lua</Link>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)LuaTests\core\cf.lua">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>scripts\core\cf.lua</Link>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)LuaTests\core\factorial.lua">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>scripts\core\factorial.lua</Link>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)LuaTests\core\fib.lua">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>scripts\core\fib.lua</Link>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)LuaTests\core\fibfor.lua">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>scripts\core\fibfor.lua</Link>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)LuaTests\core\life.lua">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>scripts\core\life.lua</Link>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)LuaTests\core\printf.lua">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>scripts\core\printf.lua</Link>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)LuaTests\core\sieve.lua">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>scripts\core\sieve.lua</Link>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)LuaTests\core\sort.lua">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>scripts\core\sort.lua</Link>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)LuaTests\scripts\foo.lua">
+      <Link>scripts\foo.lua</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)LuaTests\scripts\main.lua">
+      <Link>scripts\main.lua</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)LuaTests\scripts\module1.lua">
+      <Link>scripts\module1.lua</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -43,61 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Properties\AssemblyInfo.cs" />
-    <Compile Include="..\..\Tests\Core.cs" />
-    <Compile Include="..\..\Tests\Interop.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\LuaTests\core\bisect.lua">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>LuaTests\core\bisect.lua</Link>
-    </None>
-    <None Include="..\..\LuaTests\core\cf.lua">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>LuaTests\core\cf.lua</Link>
-    </None>
-    <None Include="..\..\LuaTests\core\factorial.lua">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>LuaTests\core\factorial.lua</Link>
-    </None>
-    <None Include="..\..\LuaTests\core\fib.lua">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>LuaTests\core\fib.lua</Link>
-    </None>
-    <None Include="..\..\LuaTests\core\fibfor.lua">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>LuaTests\core\fibfor.lua</Link>
-    </None>
-    <None Include="..\..\LuaTests\core\life.lua">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>LuaTests\core\life.lua</Link>
-    </None>
-    <None Include="..\..\LuaTests\core\printf.lua">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>LuaTests\core\printf.lua</Link>
-    </None>
-    <None Include="..\..\LuaTests\core\sieve.lua">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>LuaTests\core\sieve.lua</Link>
-    </None>
-    <None Include="..\..\LuaTests\core\sort.lua">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>LuaTests\core\sort.lua</Link>
-    </None>
-    <None Include="..\..\LuaTests\scripts\foo.lua">
-      <Link>foo.lua</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\LuaTests\scripts\main.lua">
-      <Link>main.lua</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\LuaTests\scripts\module1.lua">
-      <Link>module1.lua</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\build\net45\KeraLua.csproj">
       <Project>{c45805a8-6436-4738-bd9f-4632eea63bbc}</Project>
       <Name>KeraLua</Name>
@@ -111,9 +56,11 @@
       <Version>3.10.0</Version>
     </PackageReference>
     <PackageReference Include="NUnit3TestAdapter">
-      <Version>3.14.0</Version>
+      <Version>3.15.1</Version>
     </PackageReference>
   </ItemGroup>
+  <Import Project="..\..\KeraLuaTest.Shared.projitems" Label="Shared" />
+  <Import Project="..\..\KeraLuaTest.Shared.Scripts.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\..\build\targets\KeraLua.targets" />
 </Project>

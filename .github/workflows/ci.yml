@@ -20,7 +20,7 @@ jobs:
     - name: Setup Nuget.exe
       uses: warrenbuckley/Setup-Nuget@v1
     - name: Build with dotnet
-      run: dotnet msbuild KeraLua.sln -p:Configuration=Release
+      run: dotnet msbuild KeraLua.sln -p:Configuration=Release -r
     - name: Run unit tests
       run: packages\NUnit.ConsoleRunner.3.10.0\tools\nunit3-console.exe tests\build\net45\bin\Release\KeraLuaTest.dll --output=lib\Release\net45\testResults.xml
     - name: Pack nuget package

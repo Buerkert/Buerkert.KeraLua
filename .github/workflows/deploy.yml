@@ -22,7 +22,7 @@ jobs:
     - name: Setup Nuget.exe
       uses: warrenbuckley/Setup-Nuget@v1
     - name: Build with dotnet
-      run: dotnet msbuild KeraLua.sln -p:Configuration=Release
+      run: dotnet msbuild KeraLua.sln -p:Configuration=Release -r
     - name: Pack nuget package
       run: nuget pack KeraLua.nuspec -OutputDirectory lib\Release\net45
     - name: Add private GitHub registry to NuGet

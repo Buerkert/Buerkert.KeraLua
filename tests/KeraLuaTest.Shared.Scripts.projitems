@@ -11,50 +11,50 @@
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)LuaTests\core\bisect.lua">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>scripts\core\bisect.lua</Link>
+      <Link>LuaTests\core\bisect.lua</Link>
     </None>
     <None Include="$(MSBuildThisFileDirectory)LuaTests\core\cf.lua">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>scripts\core\cf.lua</Link>
+      <Link>LuaTests\core\cf.lua</Link>
     </None>
     <None Include="$(MSBuildThisFileDirectory)LuaTests\core\factorial.lua">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>scripts\core\factorial.lua</Link>
+      <Link>LuaTests\core\factorial.lua</Link>
     </None>
     <None Include="$(MSBuildThisFileDirectory)LuaTests\core\fib.lua">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>scripts\core\fib.lua</Link>
+      <Link>LuaTests\core\fib.lua</Link>
     </None>
     <None Include="$(MSBuildThisFileDirectory)LuaTests\core\fibfor.lua">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>scripts\core\fibfor.lua</Link>
+      <Link>LuaTests\core\fibfor.lua</Link>
     </None>
     <None Include="$(MSBuildThisFileDirectory)LuaTests\core\life.lua">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>scripts\core\life.lua</Link>
+      <Link>LuaTests\core\life.lua</Link>
     </None>
     <None Include="$(MSBuildThisFileDirectory)LuaTests\core\printf.lua">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>scripts\core\printf.lua</Link>
+      <Link>LuaTests\core\printf.lua</Link>
     </None>
     <None Include="$(MSBuildThisFileDirectory)LuaTests\core\sieve.lua">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>scripts\core\sieve.lua</Link>
+      <Link>LuaTests\core\sieve.lua</Link>
     </None>
     <None Include="$(MSBuildThisFileDirectory)LuaTests\core\sort.lua">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>scripts\core\sort.lua</Link>
+      <Link>LuaTests\core\sort.lua</Link>
     </None>
     <None Include="$(MSBuildThisFileDirectory)LuaTests\scripts\foo.lua">
-      <Link>scripts\foo.lua</Link>
+      <Link>LuaTests\foo.lua</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)LuaTests\scripts\main.lua">
-      <Link>scripts\main.lua</Link>
+      <Link>LuaTests\main.lua</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)LuaTests\scripts\module1.lua">
-      <Link>scripts\module1.lua</Link>
+      <Link>LuaTests\module1.lua</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -5,6 +5,7 @@ using NUnit.Framework;
 using KeraLua;
 
 using System.Drawing;
+using System.IO;
 
 #if MONOTOUCH
     using ObjCRuntime;
@@ -205,6 +206,7 @@ namespace KeraLuaTest.Tests
         [Test]
         public void TestLuaHook()
         {
+            Directory.SetCurrentDirectory("LuaTests");
             var state = new Lua();
             hookLog = new StringBuilder();
             state.SetHook(FuncHookCallback, LuaHookMask.Line, 0);
@@ -245,6 +247,7 @@ main.lua-main.lua:11 (main)
         [Test]
         public void TestLuaHookStruct()
         {
+            Directory.SetCurrentDirectory("LuaTests");
             FuncHookCallback = HookCalbackStruct;
             var state = new Lua();
             hookLog = new StringBuilder();

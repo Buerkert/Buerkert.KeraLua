@@ -21,6 +21,8 @@ jobs:
         dotnet-version: 2.2.108
     - name: Setup Nuget.exe
       uses: warrenbuckley/Setup-Nuget@v1
+    - name: nuget restore
+      run: nuget restore KeraLua.sln
     - name: Build with dotnet
       run: dotnet msbuild KeraLua.sln -p:Configuration=Release -r
     - name: Pack nuget package
@@ -32,10 +34,10 @@ jobs:
     - name: Upload KeraLua artifact
       uses: actions/upload-artifact@v1.0.0
       with:
-        name: KeraLua        
+        name: KeraLua
         path: lib\Release\net45
     - name: Upload runtimes artifact
       uses: actions/upload-artifact@v1.0.0
       with:
-        name: Runtimes        
+        name: Runtimes
         path: runtimes

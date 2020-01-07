@@ -5,8 +5,9 @@
     <version>1.1.0</version>
     <authors>Buerkert</authors>
     <owners>Buerkert</owners>
-    <licenseUrl>https://github.com/Buerkert/Buerkert.KeraLua/blob/master/LICENSE</licenseUrl>
+    <license type="file">LICENSE.txt</license>
     <projectUrl>https://github.com/Buerkert/Buerkert.KeraLua</projectUrl>
+    <icon>KeraLua.png</icon>
     <iconUrl>https://raw.githubusercontent.com/Buerkert/Buerkert.KeraLua/master/KeraLua.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>
@@ -14,6 +15,9 @@
     </description>
     <copyright>Copyright © Buerkert 2020</copyright>
     <tags>lua keralua</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.5" />
+    </dependencies>
   </metadata>
   <files>
     <file src="lib\Release\net45\KeraLua.dll" target="lib\net45" />
@@ -21,6 +25,7 @@
     <file src="runtimes\win-x64\native\lua53.dll" target="runtimes\win-x64\native\lua53.dll" />
     <file src="runtimes\win-x86\native\lua53.dll" target="runtimes\win-x86\native\lua53.dll" />
     <file src="build\targets\KeraLua.targets" target="build\net45\Buerkert.KeraLua.targets" />
-    <file src="LICENSE" target="LICENSE" />
+    <file src="KeraLua.png" target="KeraLua.png" />
+    <file src="LICENSE.txt" target="LICENSE.txt" />
   </files>
 </package>

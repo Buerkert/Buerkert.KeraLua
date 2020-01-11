@@ -4,11 +4,11 @@
     <ItemGroup Condition=" '$(ShouldIncludeNativeLua)' != 'False' ">
         <!-- Windows -->
         <None Include="$(MSBuildThisFileDirectory)..\runtimes\win-x86\native\lua52.dll">
-            <Link>x86\lua53.dll</Link>
+            <Link>x86\lua52.dll</Link>
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
         <None Include="$(MSBuildThisFileDirectory)..\runtimes\win-x64\native\lua52.dll">
-            <Link>x64\lua53.dll</Link>
+            <Link>x64\lua52.dll</Link>
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
     </ItemGroup>

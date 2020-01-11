@@ -40,10 +40,12 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DebugWin|AnyCPU' ">
     <Optimize>false</Optimize>
-    <OutputPath>bin\DebugWin</OutputPath>
+    <OutputPath>bin\Debug\net45\</OutputPath>
     <WarningLevel>4</WarningLevel>
-    <AssemblyName>KeraLua.Net45</AssemblyName>
+    <AssemblyName>KeraLua</AssemblyName>
     <DefineConstants>USE_DYNAMIC_DLL_REGISTER;WSTRING</DefineConstants>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseWin|AnyCPU' ">
     <Optimize>true</Optimize>

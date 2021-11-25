@@ -69,6 +69,6 @@
     <!--        <Message Text="|| IsWindows '$(IsWindows)'" Importance="high"/>-->
     <!--    </Target>-->
     <ItemGroup>
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
     </ItemGroup>
 </Project>

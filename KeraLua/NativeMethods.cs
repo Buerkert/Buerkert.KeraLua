@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 
 namespace KeraLua
 {
@@ -230,18 +231,22 @@ namespace KeraLua
         [DllImport(LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_tolstring")]
         internal static extern IntPtr LuaToLString(IntPtr luaState, int index, out uint strLen);
 
+        [SupportedOSPlatform("windows")]
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, EntryPoint =
  "luanet_pushlwstring")]
         internal static extern void LuaNetPushLWString(IntPtr luaState, string str, uint size);
         
+        [UnsupportedOSPlatform("windows")]
         [DllImport(LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi,
             EntryPoint = "luanet_pushlstring")]
         internal static extern void LuaNetPushLString(IntPtr luaState, string str, uint size);
 
+        [SupportedOSPlatform("windows")]
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, EntryPoint =
  "luanet_pushwstring")]
         internal static extern void LuaPushWString(IntPtr luaState, string str);
         
+        [UnsupportedOSPlatform("windows")]
         [DllImport(LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi,
             EntryPoint = "lua_pushstring")]
         internal static extern void LuaPushString(IntPtr luaState, string str);

@@ -1,8 +1,7 @@
 ﻿<!--<Project Sdk="Microsoft.NET.Sdk" InitialTargets="DisplayMessages">-->
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
-        <LangVersion>9</LangVersion>
+        <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
         <AssemblyTitle>Buerkert.KeraLua</AssemblyTitle>
         <Product>Buerkert.KeraLua</Product>
         <Company>Buerkert Werke GmbH &amp; Co. KG</Company>

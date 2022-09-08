@@ -17,7 +17,9 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '6.0.x'
+        dotnet-version: |
+          5.0.x
+          6.0.x
         config-file: nuget.config
         source-url: https://nuget.pkg.github.com/Buerkert/index.json
       env:

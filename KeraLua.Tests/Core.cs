@@ -12,7 +12,7 @@ using KeraLua;
 namespace KeraLua.Tests
 {
 	[TestFixture]
-	public class core
+	public class Core
 	{
 		public static readonly char UnicodeChar = '\uE007';
 		public static string UnicodeString
@@ -59,11 +59,11 @@ namespace KeraLua.Tests
 			CharPtr ptrParam = Lua.LuaToLString (state, 1, out len);
 			string param = ptrParam.ToString ();
 
-			Assert.AreEqual (core.UnicodeString, param, "#1 ToString()");
+			Assert.AreEqual (Core.UnicodeString, param, "#1 ToString()");
 
 			string param2 = ptrParam.ToString ((int)len);
 			
-			Assert.AreEqual (core.UnicodeString, param2, "#2 ToString(len)");
+			Assert.AreEqual (Core.UnicodeString, param2, "#2 ToString(len)");
 			return 0;
 		}
 
@@ -136,7 +136,7 @@ namespace KeraLua.Tests
 		{
 			state = Lua.LuaLNewState ();
 			Lua.LuaLOpenLibs (state);
-			Lua.LuaPushStdCallCFunction (state,  core.func_print);
+			Lua.LuaPushStdCallCFunction (state,  Core.func_print);
 			Lua.LuaNetSetGlobal (state, "print");			
 		}
 
@@ -242,9 +242,9 @@ namespace KeraLua.Tests
 		public void TestUnicodeString ()
 		{
 			Setup ();
-			Lua.LuaPushStdCallCFunction (state, core.FuncTestUnicodeString);
+			Lua.LuaPushStdCallCFunction (state, Core.FuncTestUnicodeString);
 			Lua.LuaNetSetGlobal (state, "TestUnicodeString");
-			Lua.LuaPushString (state, core.UnicodeString);
+			Lua.LuaPushString (state, Core.UnicodeString);
 			Lua.LuaNetSetGlobal (state, "unicodeString");
 			AssertString ("TestUnicodeString(unicodeString)");
 			TearDown ();

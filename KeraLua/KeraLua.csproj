@@ -1,7 +1,7 @@
 ﻿<!--<Project Sdk="Microsoft.NET.Sdk" InitialTargets="DisplayMessages">-->
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
+        <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
         <AssemblyTitle>Buerkert.KeraLua</AssemblyTitle>
         <Product>Buerkert.KeraLua</Product>
         <Company>Buerkert Werke GmbH &amp; Co. KG</Company>
@@ -23,10 +23,8 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
         <PackageTags>lua keralua</PackageTags>
-        <!-- wait for https://github.com/NuGet/Home/issues/10791 or just add pdb to main package-->
-        <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
-        <!--<IncludeSymbols>true</IncludeSymbols>-->
-        <!--<SymbolPackageFormat>snupkg</SymbolPackageFormat>-->
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
     <PropertyGroup>
         <DefineConstants>USE_DYNAMIC_DLL_REGISTER</DefineConstants>

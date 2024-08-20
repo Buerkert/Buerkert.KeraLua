@@ -59,11 +59,11 @@ namespace KeraLua.Tests
 			CharPtr ptrParam = Lua.LuaToLString (state, 1, out len);
 			string param = ptrParam.ToString ();
 
-			Assert.AreEqual (Core.UnicodeString, param, "#1 ToString()");
+            Assert.That(param, Is.EqualTo(Core.UnicodeString), "#1 ToString()");
 
 			string param2 = ptrParam.ToString ((int)len);
-			
-			Assert.AreEqual (Core.UnicodeString, param2, "#2 ToString(len)");
+
+            Assert.That(param2, Is.EqualTo(Core.UnicodeString), "#2 ToString(len)");
 			return 0;
 		}
 
@@ -90,7 +90,7 @@ namespace KeraLua.Tests
 				error = Lua.LuaToLString (state, 1, out len).ToString ((int)len);
 			}
 
-			Assert.True (result == 0, "Fail loading string: " + chunk + "ERROR:" + error);
+            Assert.That(result, Is.EqualTo(0), "Fail loading string: " + chunk + "ERROR:" + error);
 
 			result = Lua.LuaNetPCall (state, 0, -1, 0);
 
@@ -98,7 +98,7 @@ namespace KeraLua.Tests
 				uint len;
 				error = Lua.LuaToLString (state, 1, out len).ToString ((int)len);
 			}
-			Assert.True (result == 0, "Fail calling chunk: " + chunk + " ERROR: " + error);
+            Assert.That(result, Is.EqualTo(0), "Fail calling chunk: " + chunk + " ERROR: " + error);
 		}
 
 		void AssertFile (string path)
@@ -112,7 +112,7 @@ namespace KeraLua.Tests
 				error = Lua.LuaToLString (state, 1, out len).ToString ((int)len);
 			}
 
-			Assert.True (result == 0, "Fail loading file: " + path +  "ERROR:" + error);
+            Assert.That(result, Is.EqualTo(0), "Fail loading file: " + path + "ERROR:" + error);
 			
 			result =  Lua.LuaNetPCall (state, 0, -1, 0);
 
@@ -122,7 +122,7 @@ namespace KeraLua.Tests
 			}
 
 
-			Assert.True (result == 0, "Fail calling file: " + path + " ERROR: " + error);
+            Assert.That(result, Is.EqualTo(0), "Fail calling file: " + path + " ERROR: " + error);
 		}
 
 		void TestLuaFile (string name)

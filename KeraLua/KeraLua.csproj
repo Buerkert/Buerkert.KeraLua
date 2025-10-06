@@ -36,10 +36,6 @@
         <OutputRuntimeDir>runtimes</OutputRuntimeDir>
     </PropertyGroup>
 
-    <!--we could compile lua from the submodule but with multiple target frameworks the same bin would be compiled multiple times what is nonesense-->
-    <!--<Import Project="BuildLua.Windows.targets"/>-->
-    <!--<Import Project="BuildLua.Linux.targets"/>-->
-
     <ItemGroup Label="PackageFiles">
         <None Include="$(OutputRuntimeDir)\**" Pack="true" PackagePath="runtimes" />
         <None Include="..\README.md" Pack="true" PackagePath="" />
@@ -64,10 +60,4 @@
         <None Condition="$(IsLinux)" Include="$(OutputRuntimeDir)\linux*\**" CopyToOutputDirectory="PreserveNewest" />
         <None Condition="$(IsWindows)" Include="$(OutputRuntimeDir)\win*\**" CopyToOutputDirectory="PreserveNewest" />
     </ItemGroup>
-    <!--    <Target Name="DisplayMessages">-->
-    <!--        <Message Text="|| MSBuildProjectName '$(MSBuildProjectName)'" Importance="high"/>-->
-    <!--        <Message Text="|| RuntimeIdentifier '$(RuntimeIdentifier)'" Importance="high"/>-->
-    <!--        <Message Text="|| IsLinux '$(IsLinux)'" Importance="high"/>-->
-    <!--        <Message Text="|| IsWindows '$(IsWindows)'" Importance="high"/>-->
-    <!--    </Target>-->
 </Project>

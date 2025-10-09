@@ -3,6 +3,8 @@ param(
     [string]$ARCH
 )
 
+$ErrorActionPreference = 'Stop'
+
 # Validate architecture directory
 $ARCH_DIR = Join-Path $PSScriptRoot $ARCH
 if (-not (Test-Path $ARCH_DIR -PathType Container))
@@ -12,7 +14,7 @@ if (-not (Test-Path $ARCH_DIR -PathType Container))
 }
 
 # Set up paths
-$PROJECT_ROOT = (Get-Item $PROJECT_ROOT).Parent.Parent.FullName
+$PROJECT_ROOT = (Get-Item $PSScriptRoot).Parent.Parent.FullName
 $LUA_SRC_DIR = Join-Path $PROJECT_ROOT 'external/lua52'
 $BUILD_DIR = Join-Path $PROJECT_ROOT "build/.out/win-$ARCH"
 

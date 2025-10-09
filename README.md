@@ -7,16 +7,39 @@
 
 C# Native bindings of Lua 5.2 for .NET
 
-Before build fetch the submodules:
+## Building
 
-```sh
-git submodule update --init --recursive
-```
+### Prerequisites
 
-Building
+For successful the following prerequisites must be met:
 
-```sh
-dotnet build KeraLua.sln
-```
+- .NET 8 SDK
+- Docker
+- Windows or Linux
+    - Linux won't be able to compile `liblua` for Windows
+
+### Setup
+
+1. Before build fetch the submodules:
+    ```sh
+    git submodule update --init --recursive
+    ```
+
+2. Make sure that the Docker daemon is running.
+    ```sh
+    docker info
+   ```
+
+### Build
+
+1. Compile the lua `liblua` using the helper script
+    ```sh
+    .\build\build-in-docker-all.ps1 # on Windows
+    ./build/build-in-docker-all.sh # on Linux
+   ```
+2. Build the solution
+    ```sh
+    dotnet build KeraLua.sln
+    ```
 
 Original documentation: [NLua/KeraLua](https://github.com/NLua/KeraLua/blob/master/README.md)

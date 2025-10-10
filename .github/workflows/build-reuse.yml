@@ -1,0 +1,118 @@
+﻿name: build
+on:
+  workflow_call:
+    inputs:
+      version_suffix:
+        description: 'Version suffix for the build (e.g. "beta1", "build.123")'
+        required: false
+        type: string
+        default: ""
+
+jobs:
+  liblua:
+    strategy:
+      matrix:
+        os: [ ubuntu-22.04, windows-latest ]
+        arch: [ x86, x64, arm, arm64 ]
+        exclude:
+          - os: windows-latest
+            arch: arm
+    
+    runs-on: ${{matrix.os}}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install dependencies
+        if: startsWith(matrix.os, 'ubuntu')
+        run: sudo ./build/linux/${{matrix.arch}}/setup.sh
+
+      - name: Set up MSVC
+        if: startsWith(matrix.os, 'windows')
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: ${{ matrix.arch }}
+
+      - name: Compile on Linux
+        if: startsWith(matrix.os, 'ubuntu')
+        run: ./build/linux/build.sh ${{matrix.arch}}
+
+      - name: Compile on Windows
+        if: startsWith(matrix.os, 'windows')
+        run: ./build/win/build.ps1 ${{matrix.arch}}
+
+      - name: Gather build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: liblua-${{matrix.os}}-${{matrix.arch}}
+          path: KeraLua/runtimes/
+          retention-days: 1
+  
+  bundle-liblua:
+    runs-on: ubuntu-22.04
+    needs: liblua
+    
+    steps:
+      - name: Create liblua directory
+        run: mkdir -p liblua/runtimes
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: liblua/runtimes/
+          pattern: 'liblua-*'
+          merge-multiple: 'true'
+
+      - name: Upload bundled liblua
+        uses: actions/upload-artifact@v4
+        with:
+          name: liblua-bundled
+          path: liblua
+  
+  net:
+    strategy:
+      matrix:
+        os: [ windows-latest, windows-arm, ubuntu-latest, ubuntu-24.04-arm]
+    
+    runs-on: ${{matrix.os}}
+    needs: bundle-liblua
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: KeraLua
+          pattern: 'liblua-bundled'
+          merge-multiple: true
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.x
+          config-file: nuget.config
+          source-url: https://nuget.pkg.github.com/Buerkert/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Build with dotnet
+        run: dotnet build -c Release --version-suffix "${{ inputs.version_suffix }}"
+
+      - name: Run unit tests
+        run: dotnet test
+
+      - name: Pack
+        if: ${{ matrix.os == 'windows-latest' }}
+        run: dotnet pack -c Release -o package --version-suffix "${{ inputs.version_suffix }}"
+
+      - name: Upload artifact
+        if: ${{ matrix.os == 'windows-latest' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: KeraLua.nupkg
+          path: package/*nupkg

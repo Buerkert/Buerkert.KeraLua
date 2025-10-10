@@ -1,0 +1,41 @@
+﻿name: deploy
+
+on:
+  push:
+    branches:
+      - master
+  release:
+    types: [ published ]
+
+jobs:
+  build:
+    uses: ./.github/workflows/build-reuse.yml
+    with:
+      version_suffix: ${{ github.event_name == 'release' && '' || github.run_number }}
+  
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download NuGet package
+        uses: actions/download-artifact@v4
+        with:
+          name: KeraLua.nupkg
+          path: package
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.x
+          config-file: nuget.config
+          source-url: https://nuget.pkg.github.com/Buerkert/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Push generated package to GitHub registry
+        run: dotnet nuget push package/Buerkert.KeraLua.*.nupkg --api-key ${{secrets.GITHUB_TOKEN}}
+          

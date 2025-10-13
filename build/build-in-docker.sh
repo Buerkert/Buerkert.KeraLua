@@ -23,9 +23,10 @@ if [ ! -d "$ARCH_DIR" ]; then
   exit 1
 fi
 
-IMAGE_TAG="keralua-build-$PLATFORM-$ARCH"
+IMAGE_TAG="keralua-build:$PLATFORM-$ARCH"
 
 echo "Building Docker image '$IMAGE_TAG' for platform '$PLATFORM' and architecture '$ARCH'..."
-docker build -t "$IMAGE_TAG" -f "$PLATFORM_DIR/Dockerfile" --build-arg ARCH="$ARCH" "$PLATFORM_DIR"
+docker build -t "$IMAGE_TAG" --build-arg "TARGET_ARCH=$ARCH" "$PLATFORM_DIR"
 echo "Running build inside container..."
 docker run --rm -v "$PROJECT_ROOT":/src "$IMAGE_TAG"
+echo "Build completed."

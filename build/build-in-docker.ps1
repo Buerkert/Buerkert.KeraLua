@@ -32,8 +32,11 @@ if (-not (Test-Path -Path $ArchDir -PathType Container))
     exit 1
 }
 
-$ImageTag = "keralua-build-$Platform-$Architecture"
+$SrcMnt = if ($Platform -eq 'win') { "$ProjectRoot`:C:\src" } else { "$ProjectRoot`:/src" }
+
+$ImageTag = "keralua-build:$Platform-$Architecture"
 Write-Host "Building Docker image '$ImageTag' for platform '$Platform' and architecture '$Architecture'..." -ForegroundColor Cyan
-& "docker" build -t $ImageTag -f (Join-Path $PlatformDir 'Dockerfile') --build-arg "TARGET_ARCH=$Architecture" $PlatformDir
+& "docker" build -t $ImageTag --build-arg "TARGET_ARCH=$Architecture" -m 8GB $PlatformDir
 Write-Host "Running build inside container..." -ForegroundColor Cyan
-& "docker" run --rm -v ($ProjectRoot + ':/src') $ImageTag
+& "docker" run --storage-opt "size=127GB" --rm -v $SrcMnt $ImageTag
+Write-Host "Build completed." -ForegroundColor Green

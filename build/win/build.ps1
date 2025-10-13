@@ -25,7 +25,7 @@ if (-not (Test-Path $BUILD_DIR))
 }
 
 # Run CMake configure and build
-cmake -S $LUA_SRC_DIR -B $BUILD_DIR --toolchain (Join-Path $ARCH_DIR 'toolchain.cmake')
+cmake -G "Visual Studio 17 2022" -S $LUA_SRC_DIR -B $BUILD_DIR --toolchain (Join-Path $ARCH_DIR 'toolchain.cmake')
 cmake --build $BUILD_DIR --config Release
 
 # Parse CMakeCache.txt for LIB_SUFFIX and LIB_LUA_VER

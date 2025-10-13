@@ -8,18 +8,22 @@ SHELL ["cmd", "/S", "/C"]
 
 RUN `
     curl -SL --output vs_buildtools.exe https://aka.ms/vs/17/release/vs_buildtools.exe `
-    `
     && (start /w vs_buildtools.exe --quiet --wait --norestart --nocache `
-        --installPath "%ProgramFiles(x86)%\Microsoft Visual Studio\2022\BuildTools" `
-        --add Microsoft.VisualStudio.Workload.AzureBuildTools `
-        --remove Microsoft.VisualStudio.Component.Windows10SDK.10240 `
-        --remove Microsoft.VisualStudio.Component.Windows10SDK.10586 `
-        --remove Microsoft.VisualStudio.Component.Windows10SDK.14393 `
-        --remove Microsoft.VisualStudio.Component.Windows81SDK `
-        || IF "%ERRORLEVEL%"=="3010" EXIT 0) `
-    `
-    && del /q vs_buildtools.exe
+        --installPath C:\BuildTools `
+        --add Microsoft.VisualStudio.Workload.VCTools `
+        --add Microsoft.VisualStudio.Component.Windows11SDK.26100 `
+        --add Microsoft.VisualStudio.Component.VC.CMake.Project `
+        --add Microsoft.VisualStudio.Component.VC.Tools.ARM64 `
+        || IF "%ERRORLEVEL%"=="3010" EXIT 0)
 
-# Define the entry point for the docker container.
-# This entry point starts the developer command prompt and launches the PowerShell shell.
-ENTRYPOINT ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\Common7\\Tools\\VsDevCmd.bat", "&&", "powershell.exe", "-NoLogo", "-ExecutionPolicy", "Bypass", "build\\win\\build.ps1"]
+# Install last CMake 3.xx version since 4.0 dropped compatibility with versions <3.5
+RUN curl -SL --output "cmake.msi" "https://github.com/Kitware/CMake/releases/download/v3.31.8/cmake-3.31.8-windows-x86_64.msi" && `
+    msiexec.exe /i "cmake.msi" /quiet /norestart ADD_CMAKE_TO_PATH=System && `
+    del /q "cmake.msi"
+
+ARG TARGET_ARCH
+
+ENV TARGET_ARCH="${TARGET_ARCH}"
+ENV SRC_DIR="C:\src"
+
+ENTRYPOINT ["C:\\BuildTools\\Common7\\Tools\\VsDevCmd.bat", "&&", "powershell.exe", "-NoLogo", "-ExecutionPolicy", "Bypass", "-File", "%SRC_DIR%\\build\\win\\build.ps1", "%TARGET_ARCH%"]

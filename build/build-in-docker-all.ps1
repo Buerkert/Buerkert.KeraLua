@@ -14,4 +14,3 @@ Write-Host "Switching to windows containers..." -ForegroundColor DarkGray
 & "$PSScriptRoot\build-in-docker.ps1" win x64
 & "$PSScriptRoot\build-in-docker.ps1" win x86
 & "$PSScriptRoot\build-in-docker.ps1" win arm64
-& "$PSScriptRoot\build-in-docker.ps1" win arm

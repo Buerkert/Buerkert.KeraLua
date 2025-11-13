@@ -37,7 +37,13 @@
     </PropertyGroup>
 
     <ItemGroup Label="PackageFiles">
-        <None Include="$(OutputRuntimeDir)\**" Pack="true" PackagePath="runtimes" />
+        <None Include="$(OutputRuntimeDir)\linux-arm\native\liblua52.so" Pack="true" PackagePath="runtimes\linux-arm\native" />
+        <None Include="$(OutputRuntimeDir)\linux-arm64\native\liblua52.so" Pack="true" PackagePath="runtimes\linux-arm64\native" />
+        <None Include="$(OutputRuntimeDir)\linux-x64\native\liblua52.so" Pack="true" PackagePath="runtimes\linux-x64\native" />
+        <None Include="$(OutputRuntimeDir)\linux-x86\native\liblua52.so" Pack="true" PackagePath="runtimes\linux-x86\native" />
+        <None Include="$(OutputRuntimeDir)\win-arm64\native\lua52.dll" Pack="true" PackagePath="runtimes\win-arm64\native" />
+        <None Include="$(OutputRuntimeDir)\win-x64\native\lua52.dll" Pack="true" PackagePath="runtimes\win-x64\native" />
+        <None Include="$(OutputRuntimeDir)\win-x86\native\lua52.dll" Pack="true" PackagePath="runtimes\win-x86\native" />
         <None Include="..\README.md" Pack="true" PackagePath="" />
         <None Include="..\LICENSE.md" Pack="true" PackagePath="" />
         <None Include="..\KeraLua.png" Pack="true" PackagePath="" />

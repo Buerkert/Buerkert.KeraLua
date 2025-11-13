@@ -72,10 +72,10 @@ jobs:
           name: liblua-bundled
           path: liblua
   
-  net:
+  net-build-test:
     strategy:
       matrix:
-        os: [ windows-latest, windows-11-arm, ubuntu-latest, ubuntu-24.04-arm]
+        os: [ windows-latest, windows-11-arm, ubuntu-latest, ubuntu-24.04-arm ]
     
     runs-on: ${{matrix.os}}
     needs: bundle-liblua
@@ -106,12 +106,26 @@ jobs:
       - name: Run unit tests
         run: dotnet test
 
+  net-pack:
+    runs-on: windows-latest
+    needs: net-build-test
+    
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: KeraLua
+          pattern: 'liblua-bundled'
+          merge-multiple: true
+
       - name: Pack
-        if: ${{ matrix.os == 'windows-latest' }}
         run: dotnet pack -c Release -o package --version-suffix "${{ inputs.version_suffix }}"
 
       - name: Upload artifact
-        if: ${{ matrix.os == 'windows-latest' }}
         uses: actions/upload-artifact@v4
         with:
           name: KeraLua.nupkg

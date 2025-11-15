@@ -16,7 +16,6 @@ TestResults
 # Build results
 [Dd]ebug/
 [Rr]elease/
-x64/
 *_i.c
 *_p.c
 *.ilk
@@ -125,3 +124,5 @@ Makefile.in
 
 .vs
 .idea
+build/.out/
+KeraLua/runtimes/

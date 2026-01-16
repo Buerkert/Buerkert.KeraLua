@@ -3,7 +3,7 @@ Kera Lua License
 ----------------
 
 Copyright (c) 2019 Vinicius Jarina (viniciusjarina@gmail.com)  
-Copyright (c) 2020 Buerkert  
+Copyright (c) 2026 Buerkert  
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

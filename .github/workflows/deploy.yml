@@ -5,13 +5,13 @@ on:
     branches:
       - master
   release:
-    types: [ published ]
+    types: [ released ]
 
 jobs:
   build:
     uses: ./.github/workflows/build-reuse.yml
     with:
-      version_suffix: ${{ github.event_name == 'release' && '' || github.run_number }}
+      version_suffix: ${{ github.event_name != 'release' && github.run_number || '' }}
   
   deploy:
     needs: build
@@ -30,7 +30,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 9.x
+          dotnet-version: 8.x
           config-file: nuget.config
           source-url: https://nuget.pkg.github.com/Buerkert/index.json
         env:

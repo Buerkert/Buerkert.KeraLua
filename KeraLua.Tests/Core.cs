@@ -67,8 +67,22 @@ namespace KeraLua.Tests
 			return 0;
 		}
 
+		static int TestWrappedCFunctionSuccess(LuaState state)
+		{
+			Lua.LuaPushString(state, "OK from TestWrappedCFunctionSuccess");
+			return 1;
+		}
+		
+		static int TestWrappedCFunctionFailure(LuaState state)
+		{
+			Lua.LuaPushString(state, "Error from TestWrappedCFunctionFailure");
+			return -1;
+		}
+
 		public static LuaNativeFunction func_print = print;
 		public static LuaNativeFunction FuncTestUnicodeString = TestUnicodeString;
+		public static LuaNativeFunction FuncTestWrappedCFunctionSuccess = TestWrappedCFunctionSuccess;
+		public static LuaNativeFunction FuncTestWrappedCFunctionFailure = TestWrappedCFunctionFailure;
 
 		
 
@@ -247,6 +261,50 @@ namespace KeraLua.Tests
 			Lua.LuaPushString (state, Core.UnicodeString);
 			Lua.LuaNetSetGlobal (state, "unicodeString");
 			AssertString ("TestUnicodeString(unicodeString)");
+			TearDown ();
+		}
+		
+		[Test]
+		public void PushWrappedCFunctionSuccess ()
+		{
+			Setup ();
+			Lua.LuaPushWrappedCFunction (state, Core.FuncTestWrappedCFunctionSuccess);
+			Lua.LuaNetSetGlobal (state, "TestWrappedCFunctionSuccess");
+			uint len;
+			var result = Lua.LuaNetLoadBuffer (state, "return TestWrappedCFunctionSuccess()", 0, "chunk");
+			if (result != 0) {
+				var error = Lua.LuaToLString (state, 1, out len).ToString ((int)len);
+				Assert.Fail ($"Failed loading chunk ({result}): {error}");
+			}
+			result = Lua.LuaNetPCall (state, 0, 1, 0);
+			if (result != 0) {
+				var error = Lua.LuaToLString (state, 1, out len).ToString ((int)len);
+				Assert.Fail ($"Failed to call chunk ({result}): {error}");
+			}
+			Assert.That(Lua.LuaIsString(state, -1) , Is.EqualTo(1), "Result should be a string");
+			var strResult = Lua.LuaToLString (state, -1, out len).ToString ((int)len);
+			Assert.That(strResult, Is.EqualTo("OK from TestWrappedCFunctionSuccess"), "Unexpected result from wrapped C function");
+			TearDown ();
+		}
+		
+		[Test]
+		public void PushWrappedCFunctionFailure ()
+		{
+			Setup ();
+			Lua.LuaPushWrappedCFunction (state, Core.FuncTestWrappedCFunctionFailure);
+			Lua.LuaNetSetGlobal (state, "TestWrappedCFunctionFailure");
+			uint len;
+			string error;
+			var result = Lua.LuaNetLoadBuffer (state, "return TestWrappedCFunctionFailure()", 0, "chunk");
+			if (result != 0) {
+				error = Lua.LuaToLString (state, 1, out len).ToString ((int)len);
+				Assert.Fail ($"Failed loading chunk ({result}): {error}");
+			}
+			result = Lua.LuaNetPCall (state, 0, 1, 0);
+			Assert.That(result, Is.EqualTo(2), "Expected result to correspond to LUA_ERRRUN");
+			Assert.That(Lua.LuaIsString(state, -1) , Is.EqualTo(1), "Error should be a string");
+			error = Lua.LuaToLString (state, 1, out len).ToString ((int)len);
+			Assert.That(error, Is.EqualTo("Error from TestWrappedCFunctionFailure"), "Unexpected error from wrapped C function");
 			TearDown ();
 		}
 	}

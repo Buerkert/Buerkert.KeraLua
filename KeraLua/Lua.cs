@@ -243,6 +243,12 @@ namespace KeraLua
 		{
 			IntPtr pfunc = Marshal.GetFunctionPointerForDelegate (fn);
 			NativeMethods.LuaPushStdCallCFunction (luaState, pfunc);
+		}		
+		
+		public static void LuaPushWrappedCFunction (IntPtr luaState, LuaNativeFunction fn)
+		{
+			IntPtr pfunc = Marshal.GetFunctionPointerForDelegate (fn);
+			NativeMethods.LuaPushWrappedCFunction (luaState, pfunc);
 		}
 
 		public static void LuaPushNumber (IntPtr luaState, double number)

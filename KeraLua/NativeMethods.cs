@@ -220,6 +220,9 @@ namespace KeraLua
 
         [DllImport(LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pushstdcallcfunction")]
         internal static extern void LuaPushStdCallCFunction(IntPtr luaState, IntPtr function);
+        
+        [DllImport(LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pushwrappedcfunction")]
+        internal static extern void LuaPushWrappedCFunction(IntPtr luaState, IntPtr function);
 
         [DllImport(LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pushnumber")]
         internal static extern void LuaPushNumber(IntPtr luaState, double number);
